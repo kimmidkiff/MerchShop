@@ -6,6 +6,7 @@ namespace MerchShop.Models
     {
         public Expression<Func<T, Object>> OrderBy { get; set; } = null!;
         public Expression<Func<T, bool>> Where { get; set; } = null!;
+        public string OrderByDirection { get; set; } = string.Empty;
         public int PageNumber { get; set; } 
         public int PageSize { get; set; }
 

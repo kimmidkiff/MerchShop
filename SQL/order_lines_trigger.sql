@@ -1,5 +1,5 @@
 ﻿CREATE OR ALTER TRIGGER Update_Orderline_Subtotal
-ON Orderline
+ON Orderlines
 AFTER INSERT, UPDATE
 AS
 BEGIN
@@ -7,7 +7,6 @@ BEGIN
 
 	UPDATE ol
 	SET SubTotal = ol.Quantity * iv.SalePrice
-	FROM Orderline ol
-	JOIN Orders o ON ol.OrderID = o.OrderID
+	FROM Orderlines ol
 	JOIN Inventory iv ON ol.InventoryID = iv.InventoryID;
 END;

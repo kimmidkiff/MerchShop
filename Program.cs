@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using MerchShop.Models;
 
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<MerchShopContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MerchShopContext")));
+builder.Services.AddIdentity<MerchShopUser, IdentityRole>().AddEntityFrameworkStores<MerchShopContext>().AddDefaultTokenProviders();
 
 var app = builder.Build();
 
@@ -23,11 +25,32 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
+
+
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+using (var scope = scopeFactory.CreateScope())
+{
+    await ConfigureIdentity.CreateAdminUserAsync(scope.ServiceProvider);
+}
+
+
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
+
+
+app.MapControllerRoute(
+    name: "paging_sorting",
+    pattern: "{controller}/{action}/page-{PageNumber}/page-size-{PageSize}/{SortDirection}/sorted-on-{SortField}");
+
+
+app.MapControllerRoute(
+    name: "merch_details",
+    pattern: "{controller=Merch}/{action=Details}/{id?}/{slug?}");
+
+
 
 app.Run();

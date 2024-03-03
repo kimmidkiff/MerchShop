@@ -21,8 +21,8 @@ namespace MerchShop.Models
         [Display(Name = "Shelf Number")]
         public string ShelfNumber { get; set; } = string.Empty;
 
-        //Navigation to Inventory table (dependent), indicates a one-to-one relationship
-        public Inventory Inventory { get; set; } = null!; 
-         
+        //Navigation to Inventory table 
+        public ICollection<Inventory> OrderLine { get; set; } = new HashSet<Inventory>();
+
     }
 }

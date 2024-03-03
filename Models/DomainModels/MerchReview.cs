@@ -17,9 +17,6 @@ namespace MerchShop.Models
         public int CustomerID { get; set; }
         public Customer Customer { get; set; } = null!;
 
-        // Automatically generates Date when an entry is made
-        [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Date { get; set; }
 
         [Range(1,5)]

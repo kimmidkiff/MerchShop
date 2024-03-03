@@ -13,7 +13,6 @@ namespace MerchShop.Models
         public int MerchID { get; set; } 
         public Merch Merch { get; set; } = null!; 
 
-        // one to one
         public int WarehouseID { get; set; } 
         public Warehouse Warehouse { get; set; } = null!; 
 

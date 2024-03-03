@@ -1,0 +1,39 @@
+﻿@using MerchShop.Models
+@model MerchShop.Models.Vendor
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <h3>Vendors</h3>
+    <div>
+        <form asp-controller="Vendors" asp-action="Create" method="post">
+            <label asp-for="Name" class="form-label">Vendor Name</label>
+            <input asp-for="Name" class="form-control" />
+
+            <label asp-for="WebURL" class="form-label">Web URL</label>
+            <input asp-for="WebURL" class="form-control" />
+
+            <button type="submit" class="form-submit">Add Vendor</button>
+        </form>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Vendor Name</th>
+                <th>Web URL</th>
+            </tr>
+
+            @foreach (Vendor vendor in ViewBag.VendorList)
+            {
+                <tr>
+                    <td>@vendor.Name</td>
+                    <td>@vendor.WebURL</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@model MerchShop.Models.MerchListView
+@{
+    Layout = "_MerchLayout";
+    ViewData["Title"] = " | Merch Catalog";
+    MerchGridData current = Model.CurrentRoute;
+    GridData routes = Model.CurrentRoute.Clone();
+}
+
+
+<div class="container">
+    <h2>Merch Information</h2>
+    <table class="table table-striped table-bordered table-sm table-hover">
+        <thead class="table-dark text-white">
+            <tr>
+                <th>
+                    @{
+                        routes.SetSortAndDirection(nameof(Merch.ItemName), current);
+                    }
+                    <a asp-action="List" asp-all-route-data="@routes.ToDictionary()"
+                       class="text-white">Item Name</a>
+                </th>
+                <th>
+                    @{
+                        routes.SetSortAndDirection(nameof(Vendor.Name), current);
+                    }
+                    <a asp-action="List" asp-all-route-data="@routes.ToDictionary()"
+                       class="text-white">Vendor Name</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Merch merch in Model.Merch)
+            {
+                <tr>
+                    <td>
+                        @merch.ItemName
+
+                    </td>
+                    <td>
+                        @merch.Vendor.Name
+
+                    </td> 
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    @{
+        routes = current.Clone();
+        for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            routes.PageNumber = i;
+            string active = @Nav.Active(i, current.PageNumber);
+            <a asp-action="List" asp-all-route-data="@routes.ToDictionary()"
+               class="btn btn-outline-primary @active">@i</a>
+        }
+    }
+</div>

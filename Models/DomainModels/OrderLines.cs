@@ -20,9 +20,8 @@ namespace MerchShop.Models
 
 
         [DataType(DataType.Currency)]
-        [Precision(6,2)]
-        public decimal SubTotal { get; set; }
-
+        [Precision(6, 2)]
+        public decimal? SubTotal { get; set; }
 
     }
 }

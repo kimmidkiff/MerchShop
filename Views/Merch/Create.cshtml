@@ -1,0 +1,41 @@
+﻿@using MerchShop.Models
+@model MerchShop.Models.Merch
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <h3>Merch Items</h3>
+    <div>
+        <form asp-controller="Merch" asp-action="MerchCreate" method="post">
+            <label asp-for="ItemName" class="form-label">Item Name</label>
+            <input asp-for="ItemName" class="form-control" />
+
+            <label asp-for="VendorID" class="form-label">Vendor</label>
+            <select asp-for="VendorID" asp-items="@(new SelectList(
+                    ViewBag.VendorList,"VendorID", "Name"))" class="form-select"></select>
+
+            <button type="submit" class="form-submit">Add Game</button>
+        </form>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Item Name</th>
+                <th>Vendor</th>
+            </tr>
+
+            @foreach (Merch merch in ViewBag.MerchList)
+            {
+                <tr>
+                    <td>@merch.ItemName</td>
+                    <td>@merch.Vendor.Name</td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    @{
+        Layout = "_Layout";
+    }
+
+</head>
+<body>
+    <div class="container my-auto border border-1 border-white bg-body-tertiary">
+        <div class="row bg-black">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Vendors" asp-action="Create">Add a Vendor</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" asp-controller="Vendors" asp-action="List">Back to Vendor List</a>
+                </li>
+            </ul>
+        </div>
+        @RenderBody()
+    </div>
+</body>
+</html>

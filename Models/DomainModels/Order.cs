@@ -13,14 +13,12 @@ namespace MerchShop.Models
         public int CustomerID { get; set; } 
         public Customer Customer { get; set; } = null!; 
 
-        // automatically generates date upon entry creation
         [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Date { get; set; }
 
         [DataType(DataType.Currency)]
         [Precision(10,2)]
-        public decimal Total { get; set; }
+        public decimal? Total { get; set; }
 
         // many to one
         public ICollection<OrderLines> OrderLine { get; set; } = new HashSet<OrderLines>();

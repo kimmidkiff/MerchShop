@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 namespace MerchShop.Models
 {
-    public class MerchShopContext : DbContext
+    public class MerchShopContext : IdentityDbContext
     {
         public MerchShopContext(DbContextOptions<MerchShopContext> options) : base(options)
         {
