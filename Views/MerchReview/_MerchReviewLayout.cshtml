@@ -1,16 +1,16 @@
-﻿﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 
     @{
+
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/MerchShop.styles.css" asp-append-version="true" />
     }
 
 </head>
-<body class="bg-danger">
+<body class="bg-info">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -24,10 +24,10 @@
                             <a class="nav-link btn btn-outline-dark text-dark me-1" asp-area="" asp-controller="Merch" asp-action="List">Merch</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-dark active text-light me-1" asp-area="" asp-controller="Vendors" asp-action="List">Vendors</a>
+                            <a class="nav-link btn btn-outline-dark text-dark me-1" asp-area="" asp-controller="Vendors" asp-action="List">Vendors</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-dark me-1 text-dark" asp-area="" asp-controller="MerchReview" asp-action="List">Merch Reviews</a>
+                            <a class="nav-link btn btn-outline-dark active me-1 text-light" asp-area="" asp-controller="MerchReview" asp-action="List">Merch Reviews</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-dark text-dark me-1" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -38,10 +38,10 @@
         </nav>
     </header>
     <div class="container my-auto border border-1 border-white bg-light">
-        <div class="row bg-black">
+        <div class="row bg-dark">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Vendors" asp-action="Create">Add a Vendor</a>
+                    <a class="nav-link" asp-controller="MerchReview" asp-action="Create">Write a Review!</a>
                 </li>
             </ul>
         </div>

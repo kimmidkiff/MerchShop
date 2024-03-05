@@ -1,12 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
 }
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 <div class="container-fluid">
-    <div class="row text-center">
-        <h3>Welcome to The Merch Shop!</h3>
+    <div class="row text-center text-light">
+        <h1>Welcome to The Merch Shop!</h1>
     </div>
-    <div class="row border border-black justify-content-center mt-3">
+    <div class="row text-center text-light my-5">
+        <h3>This database serves The Merch Shop's employees to ensure that our customers always have an amazing experience.
+        In addition to serving our employees, this site also enables customers to leave reviews to help us improve.</h3>
+    </div>
+    <div class="row justify-content-center mt-3">
         <img src="/images/merchshop.jpg" class="img-fluid" alt="Merch">     
     </div>
 </div>

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Microsoft.CodeAnalysis.Elfie.Diagnostics;
+using System.Text;
 
 namespace MerchShop.Models
 {
@@ -22,6 +23,12 @@ namespace MerchShop.Models
         {
             int.TryParse(str, out int value); //returns 0 if no value found
             return value;
+        }
+
+        public static string ToStrng(this int intgr)
+        {
+            string ToStrng = intgr.ToString(); 
+            return ToStrng;
         }
 
         public static string Captialize(this string str) => str?[..1]?.ToUpper() + str?.Substring(1).ToLower();

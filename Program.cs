@@ -44,12 +44,10 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "paging_sorting",
-    pattern: "{controller}/{action}/page-{PageNumber}/page-size-{PageSize}/{SortDirection}/sorted-on-{SortField}");
+    pattern: "{controller}/{action}/page-{PageNumber}/page-{PageSize}/{SortDirection}/sorted-{SortField}");
 
 
-app.MapControllerRoute(
-    name: "merch_details",
-    pattern: "{controller=Merch}/{action=Details}/{id?}/{slug?}");
+
 
 
 

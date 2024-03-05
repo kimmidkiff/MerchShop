@@ -20,6 +20,25 @@ namespace MerchShop.Controllers
             _vendorData = new Repository<Vendor>(context);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("VendorID, Name, WebURL")] Vendor vendor)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(vendor);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(vendor);
+        }
+
         public IActionResult Index() => RedirectToAction("List");
 
 
@@ -35,6 +54,13 @@ namespace MerchShop.Controllers
                 PageSize = tempGrid.PageSize,
                 OrderByDirection = tempGrid.SortDirection,
             };
+
+            if (tempGrid.IsSortByWebURL)
+            {
+                options.OrderBy = a => a.WebURL;
+            }
+            else
+                options.OrderBy = a => a.Name;
 
 
             var vm = new VendorListView

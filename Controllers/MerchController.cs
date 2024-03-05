@@ -1,7 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MerchShop.Models;
 
@@ -17,6 +19,25 @@ namespace MerchShop.Controllers
         {
             _context = context;
             _merchData = new Repository<Merch>(context);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("MerchID,ItemName, ItemDescription")] Merch merch)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(merch);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(merch);
         }
 
         public IActionResult Index() => RedirectToAction("List");
@@ -36,6 +57,12 @@ namespace MerchShop.Controllers
                 OrderByDirection = tempGrid.SortDirection,
             };
 
+            if (tempGrid.IsSortByVendor)
+            {
+                options.OrderBy = a => a.Vendor.Name;
+            }
+            else
+                options.OrderBy = a => a.ItemName;
 
             var vm = new MerchListView
             {

@@ -3,26 +3,49 @@
 <head>
 
 @{
-    Layout = "_Layout";
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MerchShop.styles.css" asp-append-version="true" />
 }
 
 </head>
-<body>
-    <div class="container my-auto border border-1 border-white bg-body-tertiary">
-        <div class="row bg-black">
+<body class="bg-success">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">The Merch Shop</a>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-dark text-dark me-1" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-dark active text-light me-1" asp-area="" asp-controller="Merch" asp-action="List">Merch</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-dark text-dark me-1" asp-area="" asp-controller="Vendors" asp-action="List">Vendors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-dark me-1 text-dark" asp-area="" asp-controller="MerchReview" asp-action="List">Merch Reviews</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-dark text-dark me-1" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container my-auto border border-1 border-white bg-light">
+        <div class="row bg-dark">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Merch" asp-action="Create">Enter an Item</a>
+                    <a class="nav-link" asp-controller="Merch" asp-action="Create">Add a Merch Item</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" asp-controller="Vendors" asp-action="Create">Add a Vendor</a>
                 </li>                
-                <li class="nav-item ">
-                    <a class="nav-link" asp-controller="Merch" asp-action="List">Back to Merch List</a>
-                </li>
             </ul>
         </div>
         @RenderBody()

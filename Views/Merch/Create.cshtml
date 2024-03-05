@@ -1,41 +1,43 @@
-﻿@using MerchShop.Models
+﻿
 @model MerchShop.Models.Merch
 
-<!DOCTYPE html>
-<html lang="en-us">
-<head>
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    <h3>Merch Items</h3>
-    <div>
-        <form asp-controller="Merch" asp-action="MerchCreate" method="post">
-            <label asp-for="ItemName" class="form-label">Item Name</label>
-            <input asp-for="ItemName" class="form-control" />
+@{
+    Layout = "_MerchLayout";
+    ViewData["Title"] = "Create";
+}
 
-            <label asp-for="VendorID" class="form-label">Vendor</label>
-            <select asp-for="VendorID" asp-items="@(new SelectList(
-                    ViewBag.VendorList,"VendorID", "Name"))" class="form-select"></select>
 
-            <button type="submit" class="form-submit">Add Game</button>
+<h1>Add a Merch Item</h1>
+
+<h4>Merch</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ItemName" class="control-label"></label>
+                <input asp-for="ItemName" class="form-control" />
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemDescripion" class="control-label"></label>
+                <input asp-for="ItemDescripion" class="form-control" />
+                <span asp-validation-for="ItemDescripion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
         </form>
     </div>
-    <div>
-        <table>
-            <tr>
-                <th>Item Name</th>
-                <th>Vendor</th>
-            </tr>
+</div>
 
-            @foreach (Merch merch in ViewBag.MerchList)
-            {
-                <tr>
-                    <td>@merch.ItemName</td>
-                    <td>@merch.Vendor.Name</td>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
-                </tr>
-            }
-        </table>
-    </div>
-</body>
-</html>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
